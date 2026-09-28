@@ -61,8 +61,7 @@ function Install-Loader([string]$GameDir, [string]$Arch = 'x86') {
         } finally { $zip.Dispose() }
     }
 
-    # Install-Hats $plugins   # aus: TOU-Hut-Paket stuerzt ohne TOU-DLL ab (siehe HviKPlugin.cs)
-    foreach ($name in $HatFiles) { Remove-Item (Join-Path $plugins $name) -ErrorAction SilentlyContinue }
+    Install-Hats $plugins
 }
 
 # Hut-Paket neben unsere DLL legen (die Mod laedt es, wenn es da ist).
