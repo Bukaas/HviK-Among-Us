@@ -61,7 +61,13 @@ function Install-Loader([string]$GameDir, [string]$Arch = 'x86') {
         } finally { $zip.Dispose() }
     }
 
-    Install-Hats $plugins
+    # Hut-Paket vorerst aus (Absturz im Hut-Menue, siehe HviKPlugin.cs). Alte Dateien entfernen,
+    # damit beim Drueberentpacken keine Reste liegen bleiben, die nichts mehr tun.
+    # Install-Hats $plugins
+    foreach ($name in $HatFiles) {
+        $file = Join-Path $plugins $name
+        if (Test-Path $file) { [IO.File]::Delete($file) }
+    }
 }
 
 # Hut-Paket neben unsere DLL legen (die Mod laedt es, wenn es da ist).
