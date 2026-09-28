@@ -10,14 +10,11 @@ namespace HviKMod.Patches;
 [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
 public static class MainMenuPatch
 {
-    private static readonly LoadableResourceAsset Background = new("HviKMod.Resources.MenuBackground.png");
-    private static readonly LoadableResourceAsset Logo = new("HviKMod.Resources.MenuLogo.png");
-
     public static void Postfix()
     {
         // Hintergrund soll die ganze Flaeche abdecken, das Logo komplett sichtbar bleiben.
-        ReplaceSprite("MainMenuManager/MainUI/AspectScaler/BackgroundTexture", Background, cover: true);
-        ReplaceSprite("MainMenuManager/MainUI/AspectScaler/LeftPanel/Sizer/LOGO-AU", Logo, cover: false);
+        ReplaceSprite("MainMenuManager/MainUI/AspectScaler/BackgroundTexture", HviKAssets.MenuBackground, cover: true);
+        ReplaceSprite("MainMenuManager/MainUI/AspectScaler/LeftPanel/Sizer/LOGO-AU", HviKAssets.MenuLogo, cover: false);
     }
 
     private static void ReplaceSprite(string path, LoadableResourceAsset asset, bool cover)
