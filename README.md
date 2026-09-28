@@ -4,6 +4,20 @@ Eigene Among-Us-Mod der HviK Community, gebaut auf [MiraAPI](https://github.com/
 
 **Getestet mit:** Among Us v18s (2026.8.18), Steam
 
+## Download (fuer Spieler)
+
+👉 **[Neueste Version herunterladen](https://github.com/Bukaas/HviK-Among-Us/releases/latest)**
+
+- **Steam:** `HviKMod_v…_Steam.zip`
+- **Epic Games:** `HviKMod_v…_Epic.zip`
+
+ZIP-Inhalt in den Among-Us-Ordner entpacken (`winhttp.dll` muss neben `Among Us.exe` liegen) und das Spiel starten.
+Der erste Start dauert 1-3 Minuten. Deinstallieren: `winhttp.dll` loeschen.
+
+---
+
+## Fuer Entwickler
+
 ## Projektstruktur
 
 ```

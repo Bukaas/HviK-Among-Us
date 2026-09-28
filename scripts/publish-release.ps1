@@ -23,7 +23,7 @@ Der erste Start dauert 1-3 Minuten. Alle Mitspieler brauchen dieselbe Version.
 "@
 
 git -C $Root push
-gh release create $tag (Join-Path $Dist "HviKMod_${tag}_Steam.zip") (Join-Path $Dist "HviKMod_${tag}_Epic.zip") `
+& $Gh release create $tag (Join-Path $Dist "HviKMod_${tag}_Steam.zip") (Join-Path $Dist "HviKMod_${tag}_Epic.zip") `
     --title "HviK Mod $tag" --notes $notes
 if ($LASTEXITCODE -ne 0) { throw 'Release konnte nicht erstellt werden.' }
 Write-Host "Release $tag veroeffentlicht."

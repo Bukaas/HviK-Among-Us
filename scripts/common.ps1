@@ -21,6 +21,8 @@ $PluginUrls = @(
 
 $Dotnet = 'C:\Program Files\dotnet\dotnet.exe'
 if (-not (Test-Path $Dotnet)) { $Dotnet = 'dotnet' }
+$Gh = 'C:\Program Files\GitHub CLI\gh.exe'
+if (-not (Test-Path $Gh)) { $Gh = 'gh' }
 
 function Get-ModVersion {
     ([xml](Get-Content $Project)).Project.PropertyGroup.Version | Where-Object { $_ } | Select-Object -First 1
