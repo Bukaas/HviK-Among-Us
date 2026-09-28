@@ -31,9 +31,9 @@ Log der Test-Installation: `.game/BepInEx/LogOutput.log`
 
 ## Neue Version rausgeben
 
-1. `<Version>` in `src/HviKMod/HviKMod.csproj` hochzaehlen
-2. `build-release.ps1` ausfuehren
-3. `dist/HviKMod_v<Version>_Steam.zip` bzw. `_Epic.zip` verschicken
+1. `<Version>` in `src/HviKMod/HviKMod.csproj` hochzaehlen und committen
+2. `powershell -ExecutionPolicy Bypass -File scripts\publish-release.ps1`
+   (baut die ZIPs, pusht und erstellt ein GitHub-Release zum Herunterladen)
 
 ## Nach einem Among-Us-Update
 
