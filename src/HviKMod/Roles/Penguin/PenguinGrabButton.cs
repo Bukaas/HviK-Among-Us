@@ -1,3 +1,4 @@
+using HviKMod.Localization;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Keybinds;
@@ -14,7 +15,7 @@ public class PenguinGrabButton : CustomActionButton<PlayerControl>
 
     private PlayerControl? _victim;
 
-    public override string Name => "Packen";
+    public override string Name => Loc.T("Packen", "Grab");
     public override float Cooldown => Options.Cooldown;
     public override float EffectDuration => Options.DragDuration;
     public override LoadableAsset<Sprite> Sprite => HviKAssets.PenguinButton;
@@ -41,12 +42,12 @@ public class PenguinGrabButton : CustomActionButton<PlayerControl>
         if (Target == null) return;
         _victim = Target;
         PenguinAbility.RpcGrab(PlayerControl.LocalPlayer, _victim);
-        OverrideName("Töten");
+        OverrideName(Loc.T("Töten", "Kill"));
     }
 
     public override void OnEffectEnd()
     {
-        OverrideName("Packen");
+        OverrideName(Name);
         var victim = _victim;
         _victim = null;
         if (victim == null) return;

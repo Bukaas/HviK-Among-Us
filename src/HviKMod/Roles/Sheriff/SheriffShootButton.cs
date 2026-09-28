@@ -1,3 +1,4 @@
+using HviKMod.Localization;
 using HviKMod.Roles.Jester;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
@@ -13,7 +14,7 @@ public class SheriffShootButton : CustomActionButton<PlayerControl>
 {
     private static SheriffOptions Options => OptionGroupSingleton<SheriffOptions>.Instance;
 
-    public override string Name => "Schießen";
+    public override string Name => Loc.T("Schießen", "Shoot");
     public override float Cooldown => Options.Cooldown;
     public override int MaxUses => (int)Options.Shots;
     public override LoadableAsset<Sprite> Sprite => HviKAssets.SheriffButton;

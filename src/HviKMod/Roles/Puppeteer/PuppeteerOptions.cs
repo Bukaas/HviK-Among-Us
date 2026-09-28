@@ -8,12 +8,12 @@ public class PuppeteerOptions : AbstractRoleOptionGroup<PuppeteerRole>
 {
     public override string GroupName => "Puppeteer";
 
-    [ModdedNumberOption("Abklingzeit", 10, 60, 2.5f, MiraNumberSuffixes.Seconds)]
+    [ModdedNumberOption("HviK.Option.Cooldown", 10, 60, 2.5f, MiraNumberSuffixes.Seconds)]
     public float Cooldown { get; set; } = 30f;
 
-    [ModdedNumberOption("Kontrolldauer", 5, 60, 5f, MiraNumberSuffixes.Seconds)]
+    [ModdedNumberOption("HviK.Puppeteer.ControlDuration", 5, 60, 5f, MiraNumberSuffixes.Seconds)]
     public float ControlDuration { get; set; } = 20f;
 
-    [ModdedToggleOption("Puppe kann Impostor töten")]
+    [ModdedToggleOption("HviK.Puppeteer.PuppetCanKillImpostors")]
     public bool PuppetCanKillImpostors { get; set; } = false;
 }

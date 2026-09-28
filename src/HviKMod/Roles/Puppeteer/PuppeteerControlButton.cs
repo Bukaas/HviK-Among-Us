@@ -1,3 +1,4 @@
+using HviKMod.Localization;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Keybinds;
@@ -18,7 +19,7 @@ public class PuppeteerControlButton : CustomActionButton<PlayerControl>
 
     private PlayerControl? _puppet;
 
-    public override string Name => "Kontrollieren";
+    public override string Name => Loc.T("Kontrollieren", "Control");
     public override float Cooldown => Options.Cooldown;
     public override float EffectDuration => Options.ControlDuration;
     public override LoadableAsset<Sprite> Sprite => HviKAssets.PuppeteerButton;

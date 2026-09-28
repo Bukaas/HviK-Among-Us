@@ -1,3 +1,4 @@
+using HviKMod.Localization;
 using System.Linq;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
@@ -11,7 +12,7 @@ public class TransporterButton : CustomActionButton
 {
     private static TransporterOptions Options => OptionGroupSingleton<TransporterOptions>.Instance;
 
-    public override string Name => "Tauschen";
+    public override string Name => Loc.T("Tauschen", "Swap");
     public override float Cooldown => Options.Cooldown;
     public override LoadableAsset<Sprite> Sprite => HviKAssets.TransporterButton;
     public override Color TextOutlineColor => HviKColors.Transporter;

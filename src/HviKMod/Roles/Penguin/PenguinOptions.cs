@@ -8,9 +8,9 @@ public class PenguinOptions : AbstractRoleOptionGroup<PenguinRole>
 {
     public override string GroupName => "Penguin";
 
-    [ModdedNumberOption("Abklingzeit", 10, 60, 2.5f, MiraNumberSuffixes.Seconds)]
+    [ModdedNumberOption("HviK.Option.Cooldown", 10, 60, 2.5f, MiraNumberSuffixes.Seconds)]
     public float Cooldown { get; set; } = 30f;
 
-    [ModdedNumberOption("Ziehdauer", 2, 15, 1f, MiraNumberSuffixes.Seconds)]
+    [ModdedNumberOption("HviK.Penguin.DragDuration", 2, 15, 1f, MiraNumberSuffixes.Seconds)]
     public float DragDuration { get; set; } = 6f;
 }

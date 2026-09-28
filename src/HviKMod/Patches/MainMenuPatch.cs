@@ -12,6 +12,9 @@ public static class MainMenuPatch
 {
     public static void Postfix()
     {
+        // Ab hier sind alle Einstellungen registriert -> Texte in der gewaehlten Sprache setzen.
+        Localization.Loc.Apply();
+
         // Hintergrund soll die ganze Flaeche abdecken, das Logo komplett sichtbar bleiben.
         ReplaceSprite("MainMenuManager/MainUI/AspectScaler/BackgroundTexture", HviKAssets.MenuBackground, cover: true);
         ReplaceSprite("MainMenuManager/MainUI/AspectScaler/LeftPanel/Sizer/LOGO-AU", HviKAssets.MenuLogo, cover: false);

@@ -7,6 +7,6 @@ public class JesterOptions : AbstractRoleOptionGroup<JesterRole>
 {
     public override string GroupName => "Jester";
 
-    [ModdedToggleOption("Kann Vents benutzen")]
+    [ModdedToggleOption("HviK.Jester.CanUseVents")]
     public bool CanUseVents { get; set; } = false;
 }

@@ -1,3 +1,4 @@
+using HviKMod.Localization;
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -47,8 +48,8 @@ public static class PresetSharePatch
 
         var visible = saveButton.gameObject.activeSelf && MenuState.Instance &&
                       MenuState.Instance.CurrentModIdx != 0 && MenuState.Instance.CurrentMod.PluginId == HviKPlugin.Id;
-        SetState(_copyButton, "Kopieren", visible);
-        SetState(_pasteButton, "Einfügen", visible);
+        SetState(_copyButton, Loc.T("Kopieren", "Copy"), visible);
+        SetState(_pasteButton, Loc.T("Einfügen", "Paste"), visible);
     }
 
     [HarmonyPostfix]
@@ -93,7 +94,7 @@ public static class PresetSharePatch
 
             config.Save();
             GUIUtility.systemCopyBuffer = Prefix + Compress(File.ReadAllText(tempFile));
-            SetState(_copyButton, "Kopiert!", true);
+            SetState(_copyButton, Loc.T("Kopiert!", "Copied!"), true);
         }
         finally
         {
@@ -109,7 +110,7 @@ public static class PresetSharePatch
         var clipboard = GUIUtility.systemCopyBuffer?.Trim() ?? string.Empty;
         if (!clipboard.StartsWith(Prefix, StringComparison.Ordinal))
         {
-            SetState(_pasteButton, "Kein Preset!", true);
+            SetState(_pasteButton, Loc.T("Kein Preset!", "No preset!"), true);
             return;
         }
 
@@ -120,18 +121,18 @@ public static class PresetSharePatch
         }
         catch (Exception e) when (e is FormatException or InvalidDataException)
         {
-            SetState(_pasteButton, "Ungültig!", true);
+            SetState(_pasteButton, Loc.T("Ungültig!", "Invalid!"), true);
             return;
         }
 
-        var name = $"Eingefügt {DateTime.Now:dd.MM HH-mm-ss}";
+        var name = $"{Loc.T("Eingefügt", "Pasted")} {DateTime.Now:dd.MM HH-mm-ss}";
         var directory = Path.Combine(PresetManager.PresetDirectory, plugin.PluginId);
         Directory.CreateDirectory(directory);
         File.WriteAllText(Path.Combine(directory, name + ".cfg"), content);
 
         PresetManager.LoadPresets(plugin);
         plugin.Presets.FirstOrDefault(p => p.Name == name)?.LoadPreset();
-        SetState(_pasteButton, "Geladen!", true);
+        SetState(_pasteButton, Loc.T("Geladen!", "Loaded!"), true);
 
         // Tab neu aufbauen, damit das neue Preset in der Liste erscheint.
         GameSettingMenu.Instance.ChangeTab(0, false);

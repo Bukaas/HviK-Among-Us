@@ -1,3 +1,4 @@
+using HviKMod.Localization;
 using System.Linq;
 using HarmonyLib;
 using MiraAPI.GameEnd;
@@ -16,7 +17,7 @@ public class JesterGameOver : CustomGameOver
 
     public override void AfterEndGameSetup(EndGameManager endGameManager)
     {
-        endGameManager.WinText.text = "Jester gewinnt!";
+        endGameManager.WinText.text = Loc.T("Jester gewinnt!", "Jester wins!");
         endGameManager.WinText.color = HviKColors.Jester;
         endGameManager.BackgroundBar.material.SetColor("_Color", HviKColors.Jester);
     }
