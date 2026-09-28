@@ -25,6 +25,7 @@ public class PuppeteerControlButton : CustomActionButton<PlayerControl>
     public override LoadableAsset<Sprite> Sprite => HviKAssets.PuppeteerButton;
     public override Color TextOutlineColor => HviKColors.Puppeteer;
     public override BaseKeybind? Keybind => MiraGlobalKeybinds.PrimaryAbility;
+    public override ButtonLocation Location { get; set; } = ButtonLocation.BottomRight;
 
     public override bool Enabled(RoleBehaviour? role) => role is PuppeteerRole;
 
@@ -62,7 +63,10 @@ public class PuppeteerControlButton : CustomActionButton<PlayerControl>
             predicate: p => p.PlayerId != puppeteer.PlayerId && RoleHelpers.IsFreeToMove(p));
         if (victim == null) return;
 
-        puppeteer.RpcFramedCustomMurder(victim, _puppet, MeetingCheck.OutsideMeeting, resetKillTimer: false);
+        // Nicht RpcFramedCustomMurder: das animiert/teleportiert in MiraAPI 0.5.0 den Puppeteer statt der
+        // Puppe, und bei allen anderen bleibt die Leiche unsichtbar. Stattdessen ist die Puppe selbst der
+        // Taeter - normale Kill-Animation, Leiche fuer alle sichtbar, Puppe steht daneben.
+        _puppet.RpcCustomMurder(victim, MeetingCheck.OutsideMeeting, resetKillTimer: false);
         ResetCooldownAndOrEffect();
     }
 

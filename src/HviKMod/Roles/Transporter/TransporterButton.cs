@@ -17,6 +17,7 @@ public class TransporterButton : CustomActionButton
     public override LoadableAsset<Sprite> Sprite => HviKAssets.TransporterButton;
     public override Color TextOutlineColor => HviKColors.Transporter;
     public override BaseKeybind? Keybind => MiraGlobalKeybinds.PrimaryAbility;
+    public override ButtonLocation Location { get; set; } = ButtonLocation.BottomRight;
 
     // Ladungen: 0 bedeutet hier wirklich 0 (nicht unendlich) - aufgeladen wird durch Aufgaben.
     public override bool ZeroIsInfinite { get; set; } = false;

@@ -20,6 +20,7 @@ public class SheriffShootButton : CustomActionButton<PlayerControl>
     public override LoadableAsset<Sprite> Sprite => HviKAssets.SheriffButton;
     public override Color TextOutlineColor => HviKColors.Sheriff;
     public override BaseKeybind? Keybind => MiraGlobalKeybinds.PrimaryAbility;
+    public override ButtonLocation Location { get; set; } = ButtonLocation.BottomRight;
 
     public override bool Enabled(RoleBehaviour? role) => role is SheriffRole;
 

@@ -21,6 +21,7 @@ public class PenguinGrabButton : CustomActionButton<PlayerControl>
     public override LoadableAsset<Sprite> Sprite => HviKAssets.PenguinButton;
     public override Color TextOutlineColor => HviKColors.Penguin;
     public override BaseKeybind? Keybind => MiraGlobalKeybinds.PrimaryAbility;
+    public override ButtonLocation Location { get; set; } = ButtonLocation.BottomRight;
 
     // Nochmal druecken = sofort toeten
     public override bool IsEffectCancellable() => true;
