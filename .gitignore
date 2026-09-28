@@ -7,3 +7,6 @@ obj/
 .game/
 vendor/
 dist/
+
+# Persoenliche Claude-Code-Einstellungen
+.claude/settings.local.json
