@@ -9,6 +9,9 @@
         <Description>HviK Community Mod fuer Among Us</Description>
         <Authors>HviK Community</Authors>
         <RootNamespace>HviKMod</RootNamespace>
+        <!-- Keine Git-Kennung an die Version haengen ("0.4.1+abc123"): Reactor vergleicht die komplette
+             Version, sonst passen lokale Builds und Release-ZIPs mit gleicher Nummer nicht zusammen. -->
+        <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     </PropertyGroup>
 
     <ItemGroup>
