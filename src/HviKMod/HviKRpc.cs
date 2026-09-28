@@ -9,4 +9,5 @@ public enum HviKRpc : uint
     Transport = 0,
     PenguinGrab = 1,
     PenguinRelease = 2,
+    AnnounceFriendCode = 3,
 }

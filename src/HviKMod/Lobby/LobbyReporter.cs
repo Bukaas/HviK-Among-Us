@@ -41,6 +41,7 @@ public static class LobbyReporter
         {
             try
             {
+                FriendCodeSync.Tick();
                 Tick();
             }
             catch (Exception e)
@@ -94,7 +95,7 @@ public static class LobbyReporter
 
         var players = GameData.Instance.AllPlayers.ToArray()
             .Where(p => p && !p.Disconnected && !string.IsNullOrEmpty(p.PlayerName))
-            .Select(p => new LobbyPlayer { name = p.PlayerName, friendCode = p.FriendCode })
+            .Select(p => new LobbyPlayer { name = p.PlayerName, friendCode = FriendCodeSync.For(p) })
             .ToArray();
 
         return new LobbyReport
@@ -103,7 +104,7 @@ public static class LobbyReporter
             state = client.GameState == InnerNetClient.GameStates.Started ? "ingame" : "lobby",
             region = ServerManager.Instance ? ServerManager.Instance.CurrentRegion?.Name : null,
             host = PlayerControl.LocalPlayer.Data.PlayerName,
-            hostFriendCode = PlayerControl.LocalPlayer.Data.FriendCode,
+            hostFriendCode = FriendCodeSync.For(PlayerControl.LocalPlayer.Data),
             players = players,
             maxPlayers = GameOptionsManager.Instance.CurrentGameOptions.MaxPlayers,
             modVersion = ModVersion,
