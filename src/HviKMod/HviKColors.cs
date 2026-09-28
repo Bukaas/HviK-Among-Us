@@ -9,4 +9,5 @@ public static class HviKColors
     public static Color Puppeteer { get; } = new Color32(180, 40, 120, 255);
     public static Color Penguin { get; } = new Color32(40, 90, 200, 255);
     public static Color Jester { get; } = new Color32(236, 98, 165, 255);
+    public static Color Guesser { get; } = new Color32(255, 140, 0, 255);
 }

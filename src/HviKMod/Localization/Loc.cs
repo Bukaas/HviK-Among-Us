@@ -50,6 +50,13 @@ public static class Loc
 
         ["HviK.Jester.CanUseVents"] = ("Kann Vents benutzen", "Can use vents"),
 
+        ["HviK.Guesser.Amount"] = ("Anzahl", "Amount"),
+        ["HviK.Guesser.Chance"] = ("Wahrscheinlichkeit", "Chance"),
+        ["HviK.Guesser.Guesses"] = ("Tipps pro Spiel", "Guesses per game"),
+        ["HviK.Guesser.MultiplePerMeeting"] = ("Mehrere Tipps pro Meeting", "Multiple guesses per meeting"),
+        ["HviK.Guesser.WrongGuessKills"] = ("Falscher Tipp tötet den Guesser", "Wrong guess kills the Guesser"),
+        ["HviK.Guesser.CanGuessBasicRoles"] = ("Kann Crewmate/Impostor raten", "Can guess Crewmate/Impostor"),
+
         ["HviK.Settings.Tab"] = ("HviK", "HviK"),
         ["HviK.Settings.Language"] = ("Sprache der Mod", "Mod language"),
     };

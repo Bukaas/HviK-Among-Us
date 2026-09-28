@@ -118,4 +118,20 @@ New-Icon 'Penguin' {
     $g.FillPolygon((Brush 255 150 0), [System.Drawing.PointF[]]@((Pt 54 46), (Pt 74 46), (Pt 64 60)))
 }
 
+# Guess: orangenes Fadenkreuz mit Fragezeichen
+New-Icon 'Guess' {
+    param($g)
+    $orange = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(255, 255, 140, 0)), 10
+    $g.DrawEllipse((Outline 18), 14, 14, 100, 100)
+    $g.DrawEllipse($orange, 14, 14, 100, 100)
+    foreach ($l in @(@(64, 2, 64, 30), @(64, 98, 64, 126), @(2, 64, 30, 64), @(98, 64, 126, 64))) {
+        $g.DrawLine((Outline 16), $l[0], $l[1], $l[2], $l[3])
+        $g.DrawLine($orange, $l[0], $l[1], $l[2], $l[3])
+    }
+    $font = New-Object System.Drawing.Font "Segoe UI Black", 52, ([System.Drawing.FontStyle]::Bold), ([System.Drawing.GraphicsUnit]::Pixel)
+    $fmt = New-Object System.Drawing.StringFormat
+    $fmt.Alignment = 'Center'; $fmt.LineAlignment = 'Center'
+    $g.DrawString("?", $font, (Brush 255 255 255), (New-Object System.Drawing.RectangleF 0, 4, 128, 128), $fmt)
+}
+
 Write-Host "Grafiken erstellt in: $res"
