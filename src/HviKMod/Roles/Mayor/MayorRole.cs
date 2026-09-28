@@ -1,6 +1,6 @@
 using HviKMod.Localization;
 using MiraAPI.Events;
-using MiraAPI.Events.Vanilla.Meeting;
+using MiraAPI.Events.Vanilla.Meeting.Voting;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.Roles;
@@ -17,8 +17,8 @@ public class MayorRole : CrewmateRole, ICustomRole
         "Du hast in jedem Meeting zusätzliche Stimmen.",
         "You get extra votes in every meeting.");
     public string RoleLongDescription => Loc.T(
-        "Du hast in jedem Meeting zusätzliche Stimmen (einstellbar). Du kannst sie auf einen oder mehrere Spieler verteilen.",
-        "You get extra votes in every meeting (configurable). You can put them on one or several players.");
+        "Deine Stimme zählt mehrfach (einstellbar) - alle Stimmen gehen immer auf denselben Spieler.",
+        "Your vote counts multiple times (configurable) - all votes always go to the same player.");
 
     public Color RoleColor => HviKColors.Mayor;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
@@ -35,16 +35,22 @@ public class MayorOptions : AbstractRoleOptionGroup<MayorRole>
 
 public static class MayorEvents
 {
-    [RegisterEvent]
-    public static void OnMeetingStart(StartMeetingEvent _)
+    /// <summary>
+    /// Der Mayor stimmt wie alle nur einmal ab - diese eine Stimme zaehlt aber (1 + Zusatzstimmen) mal
+    /// fuer dasselbe Ziel. So kann er seine Stimmen nicht auf mehrere Spieler verteilen.
+    /// </summary>
+    [RegisterEvent(15)]
+    public static void OnVote(HandleVoteEvent @event)
     {
-        var extra = (int)OptionGroupSingleton<MayorOptions>.Instance.ExtraVotes;
-        foreach (var player in PlayerControl.AllPlayerControls.ToArray())
+        if (@event.VoteData.Owner.Data.Role is not MayorRole) return;
+
+        var votes = 1 + (int)OptionGroupSingleton<MayorOptions>.Instance.ExtraVotes;
+        @event.VoteData.SetRemainingVotes(0);
+        for (var i = 0; i < votes; i++)
         {
-            if (player.Data.Role is MayorRole && !player.Data.IsDead)
-            {
-                player.GetVoteData().IncreaseRemainingVotes(extra);
-            }
+            @event.VoteData.VoteForPlayer(@event.TargetId);
         }
+
+        @event.Cancel();
     }
 }
