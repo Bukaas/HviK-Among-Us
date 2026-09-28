@@ -25,8 +25,8 @@ public static class HatShopPatches
     private static TextMeshPro? _coinText;
     private static readonly Dictionary<int, bool> DimmedChips = new();
 
-    /// <summary>Kommt der Hut aus unserem Hut-Paket? (MiraAPI setzt bei allen Vanilla-Hueten StoreName = "Vanilla")</summary>
-    public static bool IsShopHat(HatData? hat) => hat != null && hat.StoreName != "Vanilla" && hat.ProductId != NoHat;
+    /// <summary>Kommt der Hut aus unserem Hut-Paket? (Liste aus HatFixups - StoreName ist bei Paket-Hueten kaputt)</summary>
+    public static bool IsShopHat(HatData? hat) => hat != null && HatFixups.IsShopHat(hat.ProductId);
 
     private static bool IsLocked(HatData? hat) => IsShopHat(hat) && !ShopClient.Owns(hat!.ProductId);
 
@@ -127,6 +127,7 @@ public static class HatShopPatches
         var message = ShopClient.LastMessage ?? _message;
         _coinText!.text = message == null ? coins : $"{coins}\n<size=75%>{message}</size>";
     }
+
 
     private static string? _message;
 

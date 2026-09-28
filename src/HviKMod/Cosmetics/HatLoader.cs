@@ -14,6 +14,8 @@ public static class HatLoader
     public const string CatalogFile = "touhats.catalog";
     public const string HatsKey = "touhats";
 
+    public static bool Registered { get; private set; }
+
     public static bool Register()
     {
         var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
@@ -26,6 +28,7 @@ public static class HatLoader
 
         AddressablesLoader.RegisterCatalog(catalog);
         AddressablesLoader.RegisterHats(HatsKey);
+        Registered = true;
         return true;
     }
 }

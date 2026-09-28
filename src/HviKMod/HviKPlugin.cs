@@ -29,7 +29,9 @@ public partial class HviKPlugin : BasePlugin, IMiraPlugin
     {
         Instance = this;
         Harmony.PatchAll();
-        Cosmetics.HatLoader.Register();
+        // Hut-Paket aus: Das TOU-Paket enthaelt TOU-eigene Datentypen und stuerzt ohne deren DLL beim
+        // Anzeigen ab. Shop bleibt eingebaut, bis wir eigene Huete (PNG) laden.
+        // Cosmetics.HatLoader.Register();
         Lobby.LobbyReporter.Start();
         Log.LogInfo($"HviK Mod {Version} geladen.");
     }
