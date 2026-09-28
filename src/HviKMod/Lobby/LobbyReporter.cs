@@ -25,7 +25,7 @@ public static class LobbyReporter
     private const float HeartbeatSeconds = 30f;
 
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(10) };
-    private static readonly string? ApiKey = LoadApiKey();
+    internal static readonly string? ApiKey = LoadApiKey();
     private static readonly string ModVersion = HviKPlugin.Version.Split('+')[0];
 
     private static string? _lastCode;

@@ -23,7 +23,28 @@ public class HviKLocalSettings : LocalSettingsTab
         SendLobbyCodeEntry = config.Bind("General", "SendLobbyCode", true,
             "Als Host den Lobby-Code und die Spielerliste an hvik.org / den HviK-Discord senden");
         _sendLobbyCode = SendLobbyCodeEntry;
+
+        Cosmetics.ShopClient.Init(config);
+        PasteShopCode = new LocalSettingsButton("HviK.Settings.PasteShopCode", OnPasteShopCode);
     }
+
+    /// <summary>Shop-Code (aus Discord /amongus shopcode kopiert) aus der Zwischenablage uebernehmen.</summary>
+    private static void OnPasteShopCode()
+    {
+        var code = (UnityEngine.GUIUtility.systemCopyBuffer ?? "").Trim().ToUpperInvariant();
+        if (System.Text.RegularExpressions.Regex.IsMatch(code, "^[A-Z0-9]{4}-[A-Z0-9]{4}$"))
+        {
+            Cosmetics.ShopClient.SetShopCode(code);
+            HviKPlugin.Instance.Log.LogInfo("Shop-Code uebernommen.");
+        }
+        else
+        {
+            HviKPlugin.Instance.Log.LogWarning("In der Zwischenablage ist kein Shop-Code (Form ABCD-1234).");
+        }
+    }
+
+    [LocalSettingsButton]
+    public LocalSettingsButton PasteShopCode { get; private set; }
 
     private static ConfigEntry<bool>? _sendLobbyCode;
 

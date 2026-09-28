@@ -19,6 +19,11 @@ $PluginUrls = @(
     'https://api.nuget.org/v3-flatcontainer/allofus.miraapi/0.5.0/allofus.miraapi.0.5.0.nupkg'
 )
 
+# Hut-Paket (touhats.catalog + touhats.bundle) aus dem offiziellen Town-of-Us-Mira-Release.
+# Wird nur beim Bauen geholt und in die ZIP gepackt - liegt NIE in unserem (oeffentlichen) Repo.
+$HatsSourceUrl = 'https://github.com/AU-Avengers/TOU-Mira/releases/download/1.7.3/TouMira.v1.7.3-x86-steam-itch.zip'
+$HatFiles = @('touhats.catalog', 'touhats.bundle')
+
 $Dotnet = 'C:\Program Files\dotnet\dotnet.exe'
 if (-not (Test-Path $Dotnet)) { $Dotnet = 'dotnet' }
 $Gh = 'C:\Program Files\GitHub CLI\gh.exe'
@@ -55,6 +60,21 @@ function Install-Loader([string]$GameDir, [string]$Arch = 'x86') {
             [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, (Join-Path $plugins $entry.Name), $true)
         } finally { $zip.Dispose() }
     }
+
+    Install-Hats $plugins
+}
+
+# Hut-Paket neben unsere DLL legen (die Mod laedt es, wenn es da ist).
+function Install-Hats([string]$PluginsDir) {
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zip = [System.IO.Compression.ZipFile]::OpenRead((Get-VendorFile $HatsSourceUrl))
+    try {
+        foreach ($name in $HatFiles) {
+            $entry = $zip.Entries | Where-Object { $_.Name -eq $name } | Select-Object -First 1
+            if ($entry) { [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, (Join-Path $PluginsDir $name), $true) }
+            else { Write-Warning "$name nicht im Hut-Paket gefunden" }
+        }
+    } finally { $zip.Dispose() }
 }
 
 function Build-Mod {
