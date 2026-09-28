@@ -58,6 +58,9 @@ public class GuessButton : TargetedMeetingButton
         var correct = target.Data.Role.Role == guessedRole.Role;
         var victim = correct ? target : me;
 
+        // Der Guess Master bekommt jeden Tipp mit
+        Roles.GuessMaster.GuessMasterInfo.RpcAnnounceGuess(me, target, GuessRoles.DisplayName(guessedRole), correct);
+
         if (!correct && !guesser.Options.WrongGuessKillsGuesser)
         {
             HudManager.Instance.Chat.AddChat(me, Loc.T("Falsch geraten!", "Wrong guess!"));

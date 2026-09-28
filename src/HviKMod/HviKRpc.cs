@@ -10,4 +10,7 @@ public enum HviKRpc : uint
     PenguinGrab = 1,
     PenguinRelease = 2,
     AnnounceFriendCode = 3,
+    BastionBombVent = 4,
+    BastionRemoveBomb = 5,
+    AnnounceGuess = 6,
 }

@@ -118,6 +118,17 @@ New-Icon 'Penguin' {
     $g.FillPolygon((Brush 255 150 0), [System.Drawing.PointF[]]@((Pt 54 46), (Pt 74 46), (Pt 64 60)))
 }
 
+# Bastion: Bombe mit Zuendschnur
+New-Icon 'Bastion' {
+    param($g)
+    $g.FillEllipse((Brush 40 40 50), 18, 34, 80, 80); $g.DrawEllipse((Outline 5), 18, 34, 80, 80)
+    $g.FillEllipse((Brush 110 110 130), 34, 50, 18, 14)
+    $g.FillRectangle((Brush 90 90 100), 66, 26, 20, 16); $g.DrawRectangle((Outline 4), 66, 26, 20, 16)
+    $fuse = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(255, 200, 150, 90)), 6
+    $g.DrawBezier($fuse, 76, 26, 84, 10, 100, 18, 104, 8)
+    $g.FillEllipse((Brush 255 200 0), 96, 0, 18, 18); $g.FillEllipse((Brush 255 90 0), 100, 4, 10, 10)
+}
+
 # Guess: orangenes Fadenkreuz mit Fragezeichen
 New-Icon 'Guess' {
     param($g)

@@ -57,6 +57,10 @@ public static class Loc
         ["HviK.Guesser.WrongGuessKills"] = ("Falscher Tipp tötet den Guesser", "Wrong guess kills the Guesser"),
         ["HviK.Guesser.CanGuessBasicRoles"] = ("Kann Crewmate/Impostor raten", "Can guess Crewmate/Impostor"),
 
+        ["HviK.Mayor.ExtraVotes"] = ("Zusätzliche Stimmen", "Extra votes"),
+        ["HviK.Bastion.Bombs"] = ("Bomben pro Spiel", "Bombs per game"),
+        ["HviK.Stealth.BlindDuration"] = ("Blenddauer", "Blind duration"),
+
         ["HviK.FirstDeathShield.Enabled"] = (
             "Schild für den ersten Toten (nächstes Spiel)",
             "Shield for the first death (next game)"),

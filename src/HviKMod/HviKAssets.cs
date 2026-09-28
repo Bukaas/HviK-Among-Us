@@ -15,6 +15,7 @@ public static class HviKAssets
     public static LoadableResourceAsset TransporterButton { get; } = new("HviKMod.Resources.Buttons.Transporter.png", 110);
     public static LoadableResourceAsset PuppeteerButton { get; } = new("HviKMod.Resources.Buttons.Puppeteer.png", 110);
     public static LoadableResourceAsset PenguinButton { get; } = new("HviKMod.Resources.Buttons.Penguin.png", 110);
+    public static LoadableResourceAsset BastionButton { get; } = new("HviKMod.Resources.Buttons.Bastion.png", 110);
 
     // Meeting-Buttons sind kleiner (Groesse wie der Abstimm-Haken) -> hoehere Pixeldichte.
     public static LoadableResourceAsset GuessButton { get; } = new("HviKMod.Resources.Buttons.Guess.png", 220);
