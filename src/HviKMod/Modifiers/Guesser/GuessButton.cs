@@ -17,7 +17,8 @@ public class GuessButton : TargetedMeetingButton
 {
     public override string Name => Loc.T("Raten", "Guess");
     public override int MaxUses => 0;
-    public override float Cooldown => 0f;
+    // Nicht 0: MiraAPI teilt fuer die Abklingzeit-Anzeige durch die Abklingzeit -> 0/0 = NaN -> Button unsichtbar.
+    public override float Cooldown => 0.01f;
     public override LoadableAsset<Sprite> Sprite => HviKAssets.GuessButton;
     public override Color OutlineColor => HviKColors.Guesser;
 
