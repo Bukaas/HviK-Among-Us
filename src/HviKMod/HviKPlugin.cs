@@ -29,6 +29,7 @@ public partial class HviKPlugin : BasePlugin, IMiraPlugin
     {
         Instance = this;
         Harmony.PatchAll();
+        Lobby.LobbyReporter.Start();
         Log.LogInfo($"HviK Mod {Version} geladen.");
     }
 }

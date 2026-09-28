@@ -59,6 +59,7 @@ public static class Loc
 
         ["HviK.Settings.Tab"] = ("HviK", "HviK"),
         ["HviK.Settings.Language"] = ("Sprache der Mod", "Mod language"),
+        ["HviK.Settings.SendLobbyCode"] = ("Lobby-Code an HviK senden", "Send lobby code to HviK"),
     };
 
     /// <summary>

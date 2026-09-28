@@ -4,6 +4,12 @@
 . "$PSScriptRoot\common.ps1"
 
 $version = Get-ModVersion
+
+# Ohne Schluessel funktioniert die Discord-/Homepage-Anbindung (Lobby-Codes) nicht.
+if (-not (Test-Path (Join-Path $Root 'src\HviKMod\Secrets\ApiKey.txt'))) {
+    Write-Warning 'src\HviKMod\Secrets\ApiKey.txt fehlt - die ZIP sendet KEINE Lobby-Codes an hvik.org!'
+}
+
 $modDll = Build-Mod
 New-Item -ItemType Directory -Force $Dist | Out-Null
 

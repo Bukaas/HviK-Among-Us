@@ -24,6 +24,8 @@
 
     <ItemGroup>
         <EmbeddedResource Include="Resources\**\*.png" />
+        <!-- Schluessel fuer hvik.org (lokal, nicht im Git). Fehlt er, sendet die Mod keine Lobby-Codes. -->
+        <EmbeddedResource Include="Secrets\ApiKey.txt" Condition="Exists('Secrets\ApiKey.txt')" LogicalName="HviKMod.Secrets.ApiKey.txt" />
     </ItemGroup>
 
     <!-- Nach jedem Build die DLL direkt in die Test-Installation kopieren -->

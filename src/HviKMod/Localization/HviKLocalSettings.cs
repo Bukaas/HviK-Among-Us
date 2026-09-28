@@ -19,12 +19,24 @@ public class HviKLocalSettings : LocalSettingsTab
             Loc.Setting = Language.Value;
             Loc.Apply();
         };
+
+        SendLobbyCodeEntry = config.Bind("General", "SendLobbyCode", true,
+            "Als Host den Lobby-Code und die Spielerliste an hvik.org / den HviK-Discord senden");
+        _sendLobbyCode = SendLobbyCodeEntry;
     }
+
+    private static ConfigEntry<bool>? _sendLobbyCode;
+
+    /// <summary>Darf der LobbyReporter senden? (Standard: ja)</summary>
+    public static bool SendLobbyCode => _sendLobbyCode?.Value ?? true;
 
     public override string TabName => "HviK.Settings.Tab";
 
     [LocalEnumSetting("HviK.Settings.Language", null, ["Auto", "Deutsch", "English"])]
     public ConfigEntry<ModLanguage> Language { get; private set; }
+
+    [LocalToggleSetting("HviK.Settings.SendLobbyCode")]
+    public ConfigEntry<bool> SendLobbyCodeEntry { get; private set; }
 }
 
 /// <summary>Beim Oeffnen der Lobby-Einstellungen Texte auffrischen (falls die Spielsprache gewechselt wurde).</summary>

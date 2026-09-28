@@ -8,5 +8,8 @@ obj/
 vendor/
 dist/
 
+# Geheimer Schluessel fuer hvik.org (wird beim Bauen in die DLL eingebettet, nie ins Repo!)
+src/HviKMod/Secrets/
+
 # Persoenliche Claude-Code-Einstellungen
 .claude/settings.local.json
