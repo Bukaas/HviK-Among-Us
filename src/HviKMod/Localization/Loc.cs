@@ -57,6 +57,10 @@ public static class Loc
         ["HviK.Guesser.WrongGuessKills"] = ("Falscher Tipp tötet den Guesser", "Wrong guess kills the Guesser"),
         ["HviK.Guesser.CanGuessBasicRoles"] = ("Kann Crewmate/Impostor raten", "Can guess Crewmate/Impostor"),
 
+        ["HviK.FirstDeathShield.Enabled"] = (
+            "Schild für den ersten Toten (nächstes Spiel)",
+            "Shield for the first death (next game)"),
+
         ["HviK.Settings.Tab"] = ("HviK", "HviK"),
         ["HviK.Settings.Language"] = ("Sprache der Mod", "Mod language"),
         ["HviK.Settings.SendLobbyCode"] = ("Lobby-Code an HviK senden", "Send lobby code to HviK"),
