@@ -62,7 +62,7 @@ public static class LobbyReporter
         {
             if (_lastCode != null)
             {
-                Send(new LobbyReport { code = _lastCode, state = "closed", modVersion = ModVersion });
+                Send(ClosedReport(_lastCode));
                 _lastCode = null;
                 _lastFingerprint = null;
             }
@@ -72,7 +72,7 @@ public static class LobbyReporter
 
         if (_lastCode != null && _lastCode != snapshot.code)
         {
-            Send(new LobbyReport { code = _lastCode, state = "closed", modVersion = ModVersion });
+            Send(ClosedReport(_lastCode));
         }
 
         var fingerprint = snapshot.Fingerprint();
@@ -85,6 +85,18 @@ public static class LobbyReporter
         _lastSentAt = Time.realtimeSinceStartup;
         Send(snapshot);
     }
+
+    /// <summary>
+    /// "Lobby zu" - mit dem eigenen Friend Code, damit der Server erkennt, wenn nur der Host
+    /// gewechselt hat (dann meldet sich die Mod des neuen Hosts und die Lobby laeuft weiter).
+    /// </summary>
+    private static LobbyReport ClosedReport(string code) => new()
+    {
+        code = code,
+        state = "closed",
+        hostFriendCode = EOSManager.Instance ? EOSManager.Instance.FriendCode : null,
+        modVersion = ModVersion,
+    };
 
     private static LobbyReport? TakeSnapshot()
     {
