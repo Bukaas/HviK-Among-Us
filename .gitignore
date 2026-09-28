@@ -13,3 +13,6 @@ src/HviKMod/Secrets/
 
 # Persoenliche Claude-Code-Einstellungen
 .claude/settings.local.json
+
+# Fremde Hilfsdateien (nur lokal)
+Setup_Custom_Server.bat
