@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.user
+
+# Test-Installation, heruntergeladene Abhaengigkeiten, fertige ZIPs
+.game/
+vendor/
+dist/
